@@ -1,0 +1,51 @@
+<form [formGroup]="registrationForm">
+  <div>
+    <label>First name</label>
+    <input type="text" name="firstName" formControlName="firstName">
+
+    <div *ngIf="firstName?.touched && firstName?.invalid">
+      <span *ngIf="firstName?.errors?.required">First name is required</span>
+    </div>
+  </div>
+
+  <div>
+    <label>Last name</label>
+    <input type="text" name="lastName" formControlName="lastName">
+
+    <div *ngIf="lastName?.touched && lastName?.invalid">
+      <span *ngIf="lastName?.errors?.required">Last name is required</span>
+    </div>
+  </div>
+
+  <div>
+    <label>Email</label>
+    <input type="text" name="email" formControlName="email">
+
+    <div *ngIf="email?.touched && email?.invalid">
+      <span *ngIf="email?.errors?.required">Email is required</span>
+      <span *ngIf="email?.errors?.pattern?.requiredPattern">Email is invalid</span>
+    </div>
+  </div>
+
+  <div>
+    <label>Password</label>
+    <input type="password" name="password" formControlName="password">
+
+    <div *ngIf="password?.touched && password?.invalid">
+      <span *ngIf="password?.errors?.required">Password is required</span>
+      <span *ngIf="password?.errors?.minlength?.requiredLength">Password should be 6 characters</span>
+    </div>
+  </div>
+
+  <div>
+    <label>Confirm password</label>
+    <input type="password" name="confirmPassword" formControlName="confirmPassword">
+
+    <div *ngIf="confirmPassword?.touched && confirmPassword?.invalid">
+      <span *ngIf="confirmPassword?.errors?.required">Confirm password is required</span>
+      <span *ngIf="confirmPassword?.errors?.isError">Password and confirm password should match</span>
+    </div>
+  </div>
+
+  <button type="button" [disabled]="registrationForm.invalid" (click)="submitForm()">Register</button>
+</form>
